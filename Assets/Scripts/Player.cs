@@ -92,6 +92,22 @@ public class Player : MonoBehaviour {
     void OnControllerColliderHit(ControllerColliderHit hit)
     {
 
+
+        if(hit.collider.tag == "Block")
+        {
+            
+            // if the player is below the block activate it
+            if((controller.collisionFlags & CollisionFlags.CollidedAbove) != 0)
+            {
+
+                // Activate the block
+                hit.gameObject.GetComponent<BasicBlock>().PlayerReaction();
+
+            }
+
+        }
+
+
     }
 
 }
