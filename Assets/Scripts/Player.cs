@@ -43,23 +43,14 @@ public class Player : MonoBehaviour {
 	void Update()
 	{
 
-        if(controller.collisionFlags == CollisionFlags.None)
-        {
-            Debug.Log("Stuck");
-        }
-
-
-        Debug.Log(controller.collisionFlags);
-
-        if (controller.collisionFlags == CollisionFlags.Below)
+        // Check if the player is in collision with the grounf
+        if ((controller.collisionFlags & CollisionFlags.CollidedBelow) != 0)
         {
             falling = false;
-            Debug.Log("On the ground");
         }
         else
         {
             falling = true;
-            Debug.Log("Falling");
         }
 
 
@@ -81,7 +72,8 @@ public class Player : MonoBehaviour {
         else
         {
 
-            if (jumping && controller.collisionFlags == CollisionFlags.CollidedAbove)
+            // If the player is jumping and collides with something above stop the jump
+            if (jumping && ((controller.collisionFlags & CollisionFlags.CollidedAbove)) != 0)
             {
                 moveDirection.y = 0.0f;
                 jumping = false;
