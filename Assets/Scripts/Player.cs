@@ -33,7 +33,7 @@ public class Player : MonoBehaviour {
 		// get the character controller attached to the player game object
 		CharacterController controller = GetComponent<CharacterController>();
 
-
+  
 		// check to see if the player is on the ground
 		if (controller.isGrounded) 
 		{
@@ -53,4 +53,5 @@ public class Player : MonoBehaviour {
 		// make the call to move the character controller
 		controller.Move(moveDirection * Time.deltaTime);
 	}
+
 }
