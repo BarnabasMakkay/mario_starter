@@ -20,6 +20,7 @@ public class EnemyHead : MonoBehaviour {
     {
         if (other.CompareTag("Player"))
         {
+            Debug.Log("enemy killed");
             enemy.Reset();
             // TODO: add to player score and destroy the enemy
         }

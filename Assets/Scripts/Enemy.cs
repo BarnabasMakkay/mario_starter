@@ -73,6 +73,8 @@ public class Enemy : MonoBehaviour {
 			direction = -direction;
 		} else if (hit.collider.gameObject.CompareTag ("Player")) {
             // we've hit the player
+            // reset the enemy
+            Reset();
 
             // get player script component
             Player playerComponent = playerGameObject.GetComponent<Player>();
@@ -80,12 +82,13 @@ public class Enemy : MonoBehaviour {
 
             // remove a life from the player
             playerComponent.Lives = playerComponent.Lives - 1;
+            Debug.Log("player loses life");
 
             // reset the player
             playerComponent.Reset();
 
-            // reset the enemy
-            Reset();
+            //// reset the enemy
+            //Reset();
         }
 	}
 }
