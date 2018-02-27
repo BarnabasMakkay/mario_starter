@@ -13,7 +13,6 @@ public class FireballMovement : MonoBehaviour {
 	void Start () {
         rb = GetComponent<Rigidbody>();
         rb.velocity = velocity;
-        Debug.Log("Fireball velocity set to " + velocity);
     }
 	
 	// Update is called once per frame
