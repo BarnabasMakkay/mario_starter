@@ -5,7 +5,13 @@ using UnityEngine;
 public class BasicBlock : MonoBehaviour
 {
 
+    // Event for adding score
+    public delegate void AddScore(int score);
+    public static event AddScore addscore;
+
     Transform[] cubes;
+
+    public int scoreForDestroying = 100;
 
 	// Use this for initialization
 	void Awake ()
@@ -32,6 +38,7 @@ public class BasicBlock : MonoBehaviour
         }
 
         // Add score here
+        addscore(scoreForDestroying);
 
         //Destroy
         Destroy(gameObject);
