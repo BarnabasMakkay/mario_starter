@@ -17,6 +17,13 @@ public class Player : MonoBehaviour {
     private bool jumping;
     private Vector3 start_position; // start position of the player
 
+	public Color WeaponColour;
+	private Color NormalColour;
+
+	public GameObject WeaponAmmo;
+
+	bool hasWeapon = false;
+
     // get the character controller attached to the player game object
     private CharacterController controller;
 
@@ -31,6 +38,8 @@ public class Player : MonoBehaviour {
         // set the falling assume the player is falling
         falling = true;
         jumping = false;
+
+		NormalColour = GetComponent<Renderer> ().material.color;
 
     }
 
@@ -106,6 +115,16 @@ public class Player : MonoBehaviour {
             }
 
         }
+
+		if (hit.collider.tag == "Weapon") 
+		{
+
+			// Change the players colour??
+			hasWeapon = true;
+			GetComponent<Renderer> ().material.color = WeaponColour;
+			Destroy (hit.collider.gameObject);
+
+		}
 
 
     }
