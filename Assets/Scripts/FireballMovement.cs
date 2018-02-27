@@ -40,6 +40,10 @@ public class FireballMovement : MonoBehaviour {
             Destroy(collision.gameObject);
             Debug.Log("killed enemy?");
         }
+        else if (collision.gameObject.CompareTag("Pipe"))
+        {
+            Destroy(gameObject);
+        }
         else
         {
             rb.velocity = new Vector3(velocity.x, -velocity.y, 0);
