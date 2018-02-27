@@ -101,7 +101,7 @@ public class Player : MonoBehaviour {
             {
 
                 // Activate the block
-                hit.gameObject.GetComponent<BasicBlock>().PlayerReaction();
+                hit.gameObject.GetComponent<Block>().PlayerReaction();
 
             }
 

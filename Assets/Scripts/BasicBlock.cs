@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BasicBlock : MonoBehaviour
+public class BasicBlock : Block
 {
 
     // Event for adding score
@@ -22,7 +22,7 @@ public class BasicBlock : MonoBehaviour
 
 	}
 
-    public void PlayerReaction()
+    public override void PlayerReaction()
     {
 
         // unparent each of the cubes
@@ -38,7 +38,8 @@ public class BasicBlock : MonoBehaviour
         }
 
         // Add score here
-        addscore(scoreForDestroying);
+        if (addscore != null)
+            addscore(scoreForDestroying);
 
         //Destroy
         Destroy(gameObject);

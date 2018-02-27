@@ -9,6 +9,7 @@ public class GameManager: MonoBehaviour {
 
 	public bool gameOver = false; // is the game over?
     public int playerScore = 0;
+    public int playerCoins = 0;
     public float playerTime = 300;
 
     void Awake()
@@ -16,6 +17,10 @@ public class GameManager: MonoBehaviour {
 
         // subscribe to scoring events 
         BasicBlock.addscore += updateTheGameScore;
+        // subscribe to scoring events 
+        CoinBlock.addscore += updateTheGameScore;
+        // subscribe to scoring events 
+        CoinBlock.addcoin += updateCoins;
 
     }
 
@@ -47,7 +52,6 @@ public class GameManager: MonoBehaviour {
         playerTime -= Time.deltaTime;
         hud_ref.UpdateTimer((int)playerTime);
 
-
     }
 
     // Listener for adding the score
@@ -56,6 +60,15 @@ public class GameManager: MonoBehaviour {
         playerScore += increment;
         hud_ref.UpdateScoreText(playerScore);
     }
+
+    // Listener for adding the score
+    void updateCoins()
+    {
+        playerCoins++;
+        hud_ref.UpdateCoins(playerCoins);
+    }
+
+    
 
 
 }
