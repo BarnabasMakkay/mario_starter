@@ -8,6 +8,7 @@ public class Player : MonoBehaviour {
 	public float speed = 6.0F;
 	public float jumpSpeed = 8.0F;
 	public float gravity = 20.0F;
+    public GameObject fireball;
 
 
     public int Lives = 3; // number of lives the player hs
@@ -42,6 +43,12 @@ public class Player : MonoBehaviour {
 
 	void Update()
 	{
+        // shoot fireball
+        if (Input.GetKeyDown(KeyCode.UpArrow))
+        {
+            Instantiate(fireball);
+            fireball.transform.position = transform.position + Vector3.right;
+        }
 
         // Check if the player is in collision with the grounf
         if ((controller.collisionFlags & CollisionFlags.CollidedBelow) != 0)
@@ -86,8 +93,8 @@ public class Player : MonoBehaviour {
 
 		// make the call to move the character controller
 		controller.Move(moveDirection * Time.deltaTime);
-
-	}
+        
+    }
 
     void OnControllerColliderHit(ControllerColliderHit hit)
     {
