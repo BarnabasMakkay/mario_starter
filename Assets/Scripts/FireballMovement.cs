@@ -12,8 +12,8 @@ public class FireballMovement : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         rb = GetComponent<Rigidbody>();
-        //velocity = rb.velocity;
         rb.velocity = velocity;
+        Debug.Log("Fireball velocity set to " + velocity);
     }
 	
 	// Update is called once per frame
@@ -38,15 +38,28 @@ public class FireballMovement : MonoBehaviour {
         {
             // kill enemy
             Destroy(collision.gameObject);
-            Debug.Log("killed enemy?");
         }
         else if (collision.gameObject.CompareTag("Pipe"))
         {
+            // collided into pipe
             Destroy(gameObject);
         }
         else
         {
+            // bounce from floor and other objects
             rb.velocity = new Vector3(velocity.x, -velocity.y, 0);
         }
+    }
+
+    public void SetXVelocityPositive()
+    {
+        velocity = new Vector3(Mathf.Abs(velocity.x), velocity.y, velocity.z);
+        GetComponent<Rigidbody>().velocity = velocity;
+    }
+
+    public void SetXVelocityNegative()
+    {
+        velocity = new Vector3(-Mathf.Abs(velocity.x), velocity.y, velocity.z);
+        GetComponent<Rigidbody>().velocity = velocity;
     }
 }

@@ -17,6 +17,7 @@ public class Player : MonoBehaviour {
     private bool falling;
     private bool jumping;
     private Vector3 start_position; // start position of the player
+    bool facingRight;
 
     // get the character controller attached to the player game object
     private CharacterController controller;
@@ -32,7 +33,7 @@ public class Player : MonoBehaviour {
         // set the falling assume the player is falling
         falling = true;
         jumping = false;
-
+        facingRight = true;
     }
 
 	public void Reset()
@@ -43,11 +44,32 @@ public class Player : MonoBehaviour {
 
 	void Update()
 	{
+        // set facing direction and
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            facingRight = false;
+
+        }
+        if (Input.GetKeyDown(KeyCode.D))
+        {
+            facingRight = true;
+        }
+
         // shoot fireball
         if (Input.GetKeyDown(KeyCode.UpArrow))
         {
             Instantiate(fireball);
-            fireball.transform.position = transform.position + Vector3.right;
+
+            if (facingRight)
+            {
+                fireball.transform.position = transform.position + Vector3.right;
+                fireball.GetComponent<FireballMovement>().SetXVelocityPositive();
+            }
+            else
+            {
+                fireball.transform.position = transform.position + Vector3.left;
+                fireball.GetComponent<FireballMovement>().SetXVelocityNegative();
+            }
         }
 
         // Check if the player is in collision with the grounf

@@ -82,7 +82,7 @@ public class Enemy : MonoBehaviour {
 
             // remove a life from the player
             playerComponent.Lives = playerComponent.Lives - 1;
-            Debug.Log("player loses life");
+            //Debug.Log("player loses life");
 
             // reset the player
             playerComponent.Reset();
