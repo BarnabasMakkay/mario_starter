@@ -21,8 +21,13 @@ public class EnemyHead : MonoBehaviour {
         if (other.CompareTag("Player"))
         {
             Debug.Log("enemy killed");
+            // TODO: reset to destroy if done with debugging
+            //Destroy(enemy.gameObject);
             enemy.Reset();
             // TODO: add to player score and destroy the enemy
+            Debug.Log("player score prev: " + GameObject.Find("GameManager").GetComponent<GameManager>().playerScore);
+            GameObject.Find("GameManager").GetComponent<GameManager>().playerScore += 100;
+            Debug.Log("player score curr: " + GameObject.Find("GameManager").GetComponent<GameManager>().playerScore);
         }
     }
 }

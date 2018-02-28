@@ -36,7 +36,13 @@ public class FireballMovement : MonoBehaviour {
         if (collision.gameObject.CompareTag("Enemy"))
         {
             // kill enemy
-            Destroy(collision.gameObject);
+            // TODO: reset to destroy if done with debugging
+            //Destroy(collision.gameObject);
+            collision.gameObject.GetComponent<Enemy>().Reset();
+            GameObject.Find("GameManager").GetComponent<GameManager>().playerScore += 100;
+
+            // destroy fireball
+            Destroy(gameObject);
         }
         else if (collision.gameObject.CompareTag("Pipe"))
         {
