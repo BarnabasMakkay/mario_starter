@@ -44,13 +44,14 @@ public class Player : MonoBehaviour {
 
 	void Update()
 	{
+		
         // set facing direction and
-        if (Input.GetKeyDown(KeyCode.A))
+		if (Input.GetAxis("Horizontal") < 0)
         {
             facingRight = false;
 
         }
-        if (Input.GetKeyDown(KeyCode.D))
+		if (Input.GetAxis("Horizontal") > 0)
         {
             facingRight = true;
         }
@@ -58,17 +59,18 @@ public class Player : MonoBehaviour {
         // shoot fireball
         if (Input.GetKeyDown(KeyCode.UpArrow))
         {
-            Instantiate(fireball);
+			
+            var fireballtemp = Instantiate(fireball);
 
             if (facingRight)
             {
-                fireball.transform.position = transform.position + Vector3.right;
-                fireball.GetComponent<FireballMovement>().SetXVelocityPositive();
+				fireballtemp.transform.position = transform.position + Vector3.right * 2.0f;
+				fireballtemp.GetComponent<FireballMovement>().SetXVelocityPositive();
             }
             else
             {
-                fireball.transform.position = transform.position + Vector3.left;
-                fireball.GetComponent<FireballMovement>().SetXVelocityNegative();
+				fireballtemp.transform.position = transform.position + Vector3.left * 2.0f;
+				fireballtemp.GetComponent<FireballMovement>().SetXVelocityNegative();
             }
         }
 
