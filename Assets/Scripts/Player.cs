@@ -42,7 +42,7 @@ public class Player : MonoBehaviour {
         jumping = false;
 
         facingRight = true;
-		 NormalColour = GetComponent<Renderer> ().material.color;
+		NormalColour = GetComponent<Renderer> ().material.color;
 
     }
 
@@ -67,7 +67,7 @@ public class Player : MonoBehaviour {
         }
 
         // shoot fireball
-        if (Input.GetKeyDown(KeyCode.UpArrow))
+        if (Input.GetKeyDown(KeyCode.UpArrow) && hasWeapon)
         {
 			
             var fireballtemp = Instantiate(fireball);
